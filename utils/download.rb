@@ -51,25 +51,14 @@ unless lang =~ /^\w{2,3}$/
   exit
 end
 
-def download(url,path,continue=true)
+def download(url,path)
   puts url
   uri = URI.parse(url)
-  headers = {}
-  offset = 0
-  mode = "w"
-  if continue
-    if File.exist?(path)
-      mode = "a"
-      offset = File.size(path)
-      headers['Range'] = "#{offset}-"
-    end
-  end
-  File.open(path,mode) do |output|
+  File.open(path,"w") do |output|
     Net::HTTP.start(uri.host,uri.port) do |http|
       response = http.head(uri.path)
-      raise "HTTP error: #{response.code} for #{url}" if response.code != "200"
-      Progress.start(response['content-length'].to_i-offset)
-      http.get(uri.path,headers) do |chunk|
+      Progress.start(response['content-length'].to_i)
+      http.get(uri.path) do |chunk|
         output.write(chunk)
         Progress.step(chunk.size)
       end
@@ -89,7 +78,7 @@ date = options[:date] || "latest"
 checksums_file = "md5sums.txt"
 checksums_path = File.join(data_path,checksums_file)
 files.delete(checksums_file)
-download(wiki_url(url,checksums_file,lang,date),checksums_path,false)
+download(wiki_url(url,checksums_file,lang,date),checksums_path)
 checksums = Hash[File.readlines(checksums_path).map{|l| l.split(" ").reverse}]
 main_article_file = "pages-articles.xml.bz2"
 
@@ -123,7 +112,7 @@ files.each do |file_name|
         if checksum == computed_checksum
           puts "Checksum OK".hl(:green)
         else
-          STDERR.puts "Checksum invalid for #{file_name}!".hl(:red)
+          STDERR.puts "Checksum invalid!".hl(:red)
         end
       else
         puts "#{file_name} downloaded. Cannot compute checksum."
