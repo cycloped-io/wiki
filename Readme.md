@@ -2,9 +2,6 @@
 
 Object-oriented access to Wikipedia data.
 
-*Note:* Ruby Object Data works only with Ruby v. 1.9.2 (not higher!). We
-recommend installing that version of Ruby with [Ruby Version Manager](http://rvm.io).
-
 ## Description
 
 Cyclopedio-Wiki uses Ruby Object Database (ROD) to provide fast access to selected part
