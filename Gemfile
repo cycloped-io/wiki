@@ -11,5 +11,5 @@ gem 'thin'
 gem 'rake'
 gem 'sparql-client'
 
-gem 'rod', "~> 0.7.4.0"
+gem 'rod', "~> 0.7.4.0", :path => "~/src/nlp/rod"
 gem 'rod-rest'

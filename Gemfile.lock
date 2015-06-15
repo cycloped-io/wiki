@@ -10,6 +10,16 @@ PATH
     cyclopedio-wiki (0.1.0)
       rod (~> 0.7.4.0)
 
+PATH
+  remote: ~/src/nlp/rod
+  specs:
+    rod (0.7.4.1)
+      RubyInline (>= 3.10.0, < 4.0.0)
+      activemodel (~> 3.2, >= 3.2.2)
+      bsearch (>= 1.5.0, < 1.6.0)
+      english (>= 0.5.0, < 0.6.0)
+      ref (>= 1.0.5, < 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -42,12 +52,6 @@ GEM
     rake (10.1.0)
     rdf (1.1.2.1)
     ref (1.0.5)
-    rod (0.7.4.0)
-      RubyInline (>= 3.10.0, < 4.0.0)
-      activemodel (~> 3.2, >= 3.2.2)
-      bsearch (>= 1.5.0, < 1.6.0)
-      english (>= 0.5.0, < 0.6.0)
-      ref (>= 1.0.5, < 2.0.0)
     rod-rest (0.5.1)
       faraday
       rod
@@ -76,7 +80,7 @@ DEPENDENCIES
   htmlentities
   progress!
   rake
-  rod (~> 0.7.4.0)
+  rod (~> 0.7.4.0)!
   rod-rest
   slop (~> 3.4.7)
   sparql-client
