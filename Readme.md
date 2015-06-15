@@ -51,7 +51,10 @@ reports it back to the user.
 You can also run the task by issuing a `rake` task:
 
 ```bash
-wiki$ WIKI_DATA=/path/to/data WIKI_DB=/path/to/db rake download
+wiki$ export WIKI_DATA=/path/to/data 
+wiki$ export WIKI_DB=/path/to/db 
+wiki$ export WIKI_LANG=ja
+wiki$ rake download
 ```
 
 ### Console
@@ -93,16 +96,11 @@ future most of the data will be loaded from the SQL files, since WM is no longer
 developed.
 
 You can also load the data in a sequence using Rake. From the `wiki` directory
-call:
+call (assuming the environment variables are set):
 
 ```bash
-wiki$ WIKI_DATA=path/to/extracted/data WIKI_DB=path/to/db rake
+wiki$ rake
 ```
-
-`WIKI_DATA` is the path to the directory where the data extracted by SQL
-extraction scripts is stored. `WIKI_DB` is the path to the ROD database. It
-will be created if it does not exist. Make the path convenient, since it will be
-used in many of the other scripts.
 
 ### Category processing
 
@@ -152,13 +150,13 @@ You can find, mark and export the administrative categories in a sequence
 using the following `Rake` tasks:
 
 ```bash
-wiki$ WIKI_DATA=path/to/extracted/data WIKI_DB=path/to/db rake administrative:all
+wiki$ rake administrative:all
 ```
 
 You can load the parsed categories using the following task:
 
 ```bash
-wiki$ WIKI_DATA=path/to/extracted/data WIKI_DB=path/to/db rake load:heads
+wiki$ rake load:heads
 ```
 
 
