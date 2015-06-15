@@ -52,6 +52,7 @@ You can also run the task by issuing a `rake` task:
 
 ```bash
 wiki$ WIKI_DATA=/path/to/data WIKI_DB=/path/to/db rake download
+```
 
 ### Console
 
