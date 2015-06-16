@@ -53,6 +53,7 @@ open("#{data_path}/translations.csv","r:utf-8") do |file|
       end
       translations.each_slice(2) do |language,value|
         next unless languages.include?(language)
+	next if value.empty?
         total += 1
         translation = Translation.new(:language => language,
                                       :value => value,
