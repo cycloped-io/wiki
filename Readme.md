@@ -28,6 +28,15 @@ Wikipedia-related text processing tasks.
 
 ## Scripts
 
+### Prerequisites
+
+Make sure Ruby Object Database is working. You need Berkeley DB in development version 
+installed in your system
+
+```bash
+wiki$ sudo apt-get install libdb6.0-dev
+```
+
 ### Perparation
 
 In all cases you can provide the environment variables with:
