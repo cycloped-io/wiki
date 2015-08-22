@@ -14,7 +14,7 @@ options = Slop.new do
 
   on :d=, 'db_path', 'ROD database path', required: true
   on :t=, 'templates', 'File with ids of categories including the administrative template', required: true
-  on :w=, 'data_path', 'Directory with administrative category name patterns (default: data/categories)', default: 'data/categories'
+  on :w=, 'data_path', 'Directory with administrative category name patterns (default: data/categories)', default: 'data/administrative_categories/'
   on :l=, :language, 'Wikipedia language', default: 'en'
 end
 
@@ -30,14 +30,14 @@ data_path = options[:data_path]
 lang = options[:language]
 
 Database.instance.open_database(db_path,:readonly => false)
-universal_match = File.readlines(data_path + "/administrative_categories/#{lang}/universal_match.txt").map(&:chomp)
-prefix_match = File.readlines(data_path + "/administrative_categories/#{lang}/prefix_match.txt").map(&:chomp)
-strict_match = File.readlines(data_path + "/administrative_categories/#{lang}/strict_match.txt").map(&:chomp)
+universal_match = File.readlines(data_path + "#{lang}/universal_match.txt").map(&:chomp)
+prefix_match = File.readlines(data_path + "#{lang}/prefix_match.txt").map(&:chomp)
+strict_match = File.readlines(data_path + "#{lang}/strict_match.txt").map(&:chomp)
 blacklist_regexp = /#{universal_match * "|"}|(\b(#{prefix_match * "|"}))|(\b(#{strict_match * "|"})\b)/i
 
-whitelist = File.readlines(data_path + "/administrative_categories/#{lang}/whitelist_categories.txt").map(&:chomp)
+whitelist = File.readlines(data_path + "#{lang}/whitelist_categories.txt").map(&:chomp)
 
-File.readlines(data_path + "/administrative_categories/#{lang}/root_administrative.txt").map(&:chomp).each do |root_name|
+File.readlines(data_path + "#{lang}/root_administrative.txt").map(&:chomp).each do |root_name|
   root = Category.find_by_name(root_name)
   root.administrative!
   root.children.each do |child|
