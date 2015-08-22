@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-require 'slop'
 require 'bundler/setup'
+require 'slop'
 require 'cyclopedio/wiki'
 require 'progress'
 require 'csv'
