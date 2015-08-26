@@ -136,3 +136,9 @@ namespace :definitions do
 
 end
 
+namespace :eponymous do
+  desc "Convert list of eponymous template matches into loadable files"
+  task :templates do
+    puts `./utils/categories/export_eponymous.rb -d #{db} -f #{wikipedia_path}/eponymous_from_templates.csv -o #{wikipedia_path}/eponymous_from_templates_to_load.csv`
+  end
+end
