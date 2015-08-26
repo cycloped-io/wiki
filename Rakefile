@@ -52,6 +52,16 @@ namespace :load do
   task :heads do
     puts `./utils/categories/load_parses.rb -d #{db} -f #{wikipedia_path}/categories_with_heads.csv`
   end
+
+  desc 'Load eponymous links from templates'
+  task :eponymous_templates do
+    puts `./utils/load/eponymous.rb -d #{db} -w #{wikipedia_path}/eponymous_from_templates_to_load.csv`
+  end
+
+  desc 'Load eponymous links from compound categories'
+  task :eponymous_compounds do
+    puts `./utils/load/eponymous.rb -d #{db} -w #{wikipedia_path}/eponymous_from_compound_to_load.csv`
+  end
 end
 
 namespace :administrative do
@@ -140,5 +150,11 @@ namespace :eponymous do
   desc "Convert list of eponymous template matches into loadable files"
   task :templates do
     puts `./utils/categories/export_eponymous.rb -d #{db} -f #{wikipedia_path}/eponymous_from_templates.csv -o #{wikipedia_path}/eponymous_from_templates_to_load.csv`
+  end
+
+  desc "Convert list of eponymy links extracted from compound categories to common format"
+  task :compound do
+    data,db = get_params
+    puts `./utils/categories/convert_eponymous.rb -d #{db} -o #{data}/eponymous_from_compound_to_load.csv -i #{data}/eponymous_from_compound.csv`
   end
 end

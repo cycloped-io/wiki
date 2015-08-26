@@ -14,7 +14,7 @@ options = Slop.new do
   on :d=, :db_path, "Path to ROD database", required: true
   on :f=, :input, "File with ids of categories with eponymous template", required: true
   on :o=, :output, "File with ids of categories and the names of corresponding articles", required: true
-  on :w=, :dump, "File with Wikipedia dump (pages-articles). Might be provided by WIKI_DATA_PATH env. variable"
+  on :w=, :dump, "File with Wikipedia dump (pages-articles). Might be provided by WIKI_DATA env. variable"
 end
 
 begin
