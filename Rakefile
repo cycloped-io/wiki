@@ -55,12 +55,12 @@ namespace :load do
 
   desc 'Load eponymous links from templates'
   task :eponymous_templates do
-    puts `./utils/load/eponymous.rb -d #{db} -w #{wikipedia_path}/eponymous_from_templates_to_load.csv`
+    puts `./utils/load/eponymous.rb -d #{db} -i #{wikipedia_path}/eponymous_from_templates_to_load.csv`
   end
 
   desc 'Load eponymous links from compound categories'
   task :eponymous_compounds do
-    puts `./utils/load/eponymous.rb -d #{db} -w #{wikipedia_path}/eponymous_from_compound_to_load.csv`
+    puts `./utils/load/eponymous.rb -d #{db} -i #{wikipedia_path}/eponymous_from_compound_to_load.csv`
   end
 end
 
