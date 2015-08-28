@@ -62,6 +62,11 @@ namespace :load do
   task :eponymous_compounds do
     puts `./utils/load/eponymous.rb -d #{db} -i #{wikipedia_path}/eponymous_from_compound_to_load.csv`
   end
+
+  desc 'Load infoboxes'
+  task :infoboxes do
+    puts `./utils/load/infoboxes.rb -d #{db} -i #{wikipedia_path}/infoboxes.csv`
+  end
 end
 
 namespace :administrative do
