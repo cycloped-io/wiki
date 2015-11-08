@@ -26,6 +26,8 @@ module  Cyclopedio
       # is computed automatically and is the main purpose of cycloped-io.
       field :types, :object
 
+      # List of infoboxes appearing in the article (as Ruby Array).
+      field :infoboxes, :object
 
       # The categories this article belongs to.
       # Their +wiki_ids+ are the (1) field in the +cagtegorylink.csv+ file.
