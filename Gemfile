@@ -5,7 +5,7 @@ gemspec
 
 gem 'slop', "~> 3.4.7"
 gem 'htmlentities'
-gem 'progress', :git => 'git://github.com/djstrong/progress.git'
+gem 'progress'#, :git => 'git://github.com/djstrong/progress.git'
 gem 'colors'
 gem 'thin'
 gem 'rake'

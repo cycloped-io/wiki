@@ -8,6 +8,7 @@ require 'net/http'
 require 'progress'
 require 'digest/md5'
 require 'colors'
+require 'open-uri'
 
 options = Slop.new do
   banner "Usage: #{$PROGRAM_NAME} -w data_path [-l language_code] [-f files.txt] [-m mirror]\n" +
@@ -16,7 +17,7 @@ options = Slop.new do
   on :w=, :data_path, 'Wikipedia sql dumps storage path', required: true
   on :l=, :language, 'Language edition of Wikipedia (default: en)'
   on :f=, :files, 'List of files to download (default: data/wikipedia_dumps.txt)'
-  on :m=, :mirror, 'Mirror used to download the dumps (default: http://dumps.wikimedia.org)'
+  on :m=, :mirror, 'Mirror used to download the dumps (default: https://dumps.wikimedia.org)'
   on :d=, :date, 'The specific version Wikipedia dump (default: latest)'
 end
 
@@ -36,9 +37,9 @@ unless File.exist?(dumps)
   exit
 end
 
-url = options[:mirror] || "http://dumps.wikimedia.org"
-unless url =~ /^http:\/\//
-  puts "Mirror URL requires protocol (e.g. http://)"
+url = options[:mirror] || "https://dumps.wikimedia.org"
+unless url =~ /^https:\/\//
+  puts "Mirror URL requires protocol (e.g. https://)"
   puts options
   exit
 end
@@ -55,7 +56,7 @@ def download(url,path)
   puts url
   uri = URI.parse(url)
   File.open(path,"w") do |output|
-    Net::HTTP.start(uri.host,uri.port) do |http|
+    Net::HTTP.start(uri.host,uri.port, use_ssl: true) do |http|
       response = http.head(uri.path)
       Progress.start(response['content-length'].to_i)
       http.get(uri.path) do |chunk|
@@ -79,7 +80,10 @@ checksums_file = "md5sums.txt"
 checksums_path = File.join(data_path,checksums_file)
 files.delete(checksums_file)
 download(wiki_url(url,checksums_file,lang,date),checksums_path)
-checksums = Hash[File.readlines(checksums_path).map{|l| l.split(" ").reverse}]
+lines = File.readlines(checksums_path)
+puts "Contents of MD5SUMS:"
+puts lines
+checksums = Hash[lines.map{|l| l.split(" ").reverse}]
 main_article_file = "pages-articles.xml.bz2"
 
 files.each do |file_name|
