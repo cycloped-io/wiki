@@ -25,26 +25,31 @@ end
 namespace :load do
   desc "Load pages"
   task :pages do
+    puts "Loading pages"
     puts `./utils/load/init.rb -w #{wikipedia_path} -d #{db}`
   end
 
   desc "Load language links"
   task :languages do
+    puts "Loading languages"
     puts `./utils/load/translations.rb -w #{wikipedia_path} -d #{db} -l en:nl:de:sv:fr:it:es:ru:pl:ja`
   end
 
   desc "Load redirects"
   task :redirects do
+    puts "Loading redirects"
     puts `./utils/load/redirects.rb -w #{wikipedia_path} -d #{db}`
   end
 
   desc "Load category links"
   task :categories do
+    puts "Loading categories"
     puts `./utils/load/categories.rb -w #{wikipedia_path} -d #{db}`
   end
 
   desc "Load page offsets"
   task :offsets do
+    puts "Loading offsets"
     puts `./utils/load/offsets.rb -w #{wikipedia_path} -d #{db}`
   end
 
