@@ -53,6 +53,13 @@ namespace :load do
     puts `./utils/load/offsets.rb -w #{wikipedia_path} -d #{db}`
   end
 
+  desc "Load page links"
+  task :links do
+    puts "Loading links"
+    puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r in `
+    puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r out `
+  end
+
   desc 'Load head nouns'
   task :heads do
     puts `./utils/categories/load_parses.rb -d #{db} -f #{wikipedia_path}/categories_with_heads.csv`
