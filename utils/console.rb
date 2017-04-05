@@ -3,6 +3,7 @@
 
 require 'bundler/setup'
 require 'cyclopedio/wiki'
+require 'cyclopedio/relatedness'
 require 'irb'
 require 'progress'
 

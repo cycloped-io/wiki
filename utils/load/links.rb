@@ -47,29 +47,26 @@ open("#{data_path}/#{file_name}.csv","r:utf-8") do |file|
   file.with_progress.each_with_index do |line,index|
     begin
       if direction == "in"
-        article_identifier, *related_elements = csv.parse(line)
+        article_identifier, *related_elements = csv.parse(line).first
+        article = Article.find_by_name(article_identifier)
+        related_elements.map! do |element_id|
+          total += 1
+          [element_id, Article.find_by_wiki_id(element_id.to_i)]
+        end
+      else
+        article_identifier, *related_elements = csv.parse(line).first
         article = Article.find_by_wiki_id(article_identifier.to_i)
         related_elements.map! do |element_name|
           total += 1
           [element_name, Article.find_by_name(element_name)]
         end
-      else
-        article_identifier, *related_elements = csv.parse(line)
-        article = Article.find_by_name(article_identifier.to_i)
-        related_elements.map! do |element_id|
-          total += 1
-          [element_id, Article.find_by_wiki_id(element_id)]
-        end
       end
       if article.nil?
-        errors.puts article_identifier.to_s
+        errors.puts "Missing subject: #{article_identifier}"
         next
       end
-      related_elements.each do |element_identifier, element|
-        if element.nil?
-          errors.puts element_identifier.to_s
-          next
-        end
+      related_elements.reject{ |_, e| e.nil? }.sort_by{ |_, e| e.rod_id }.
+	  each do |element_identifier, element|
         article.send(method_name) << element
         linked += 1
       end
