@@ -34,7 +34,7 @@ Make sure Ruby Object Database is working. You need Berkeley DB in development v
 installed in your system
 
 ```bash
-wiki$ sudo apt-get install libdb6.0-dev
+wiki$ sudo apt-get install libdb-dev
 ```
 
 ### Perparation
@@ -50,21 +50,11 @@ The following environment variable are used in this project:
 * WIKI_DATA - path to the downloaded dumps of Wikipedia, as well as intermediate and final files produced by the system
 * WIKI_DB - path to the Ruby Object Database, that speed-up the data lookup
 * WIKI_LANG - the language of the Wikipedia that is being processed
+* WIKI_CONFIG - the path to the file with the configuration for your language, check github.com/cycloped-io/config` project for
+  details
 
-### Download
+You also have to download the data first. Use `github.com/cycloped-io/sql` project to download the necessary data.
 
-`utils/download.rb` is used to automatically download necessary dumps of
-Wikipedia files. It check the checksums of files, so in case of problems it
-reports it back to the user.
-
-You can also run the task by issuing a `rake` task:
-
-```bash
-wiki$ export WIKI_DATA=/path/to/data 
-wiki$ export WIKI_DB=/path/to/db 
-wiki$ export WIKI_LANG=ja
-wiki$ rake download
-```
 
 ### Console
 

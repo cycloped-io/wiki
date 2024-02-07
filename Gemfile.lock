@@ -2,77 +2,67 @@ PATH
   remote: .
   specs:
     cyclopedio-wiki (0.1.0)
-      rod (~> 0.7.4.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    RubyInline (3.12.4)
+    RubyInline (3.14.0)
       ZenTest (~> 4.3)
-    ZenTest (4.11.0)
-    activemodel (3.2.21)
-      activesupport (= 3.2.21)
+    ZenTest (4.12.1)
+    activemodel (3.2.22.5)
+      activesupport (= 3.2.22.5)
       builder (~> 3.0.0)
-    activesupport (3.2.21)
+    activesupport (3.2.22.5)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    bigdecimal (1.3.5)
     bsearch (1.5.0)
     builder (3.0.4)
     colors (0.0.7)
-    daemons (1.1.9)
-    english (0.5.0)
-    eventmachine (1.2.3)
-    faraday (0.9.0)
-      multipart-post (>= 1.2, < 3)
-    htmlentities (4.3.1)
-    i18n (0.7.0)
-    json_pure (1.8.1)
-    multi_json (1.11.1)
-    multipart-post (2.0.0)
-    net-http-persistent (1.4.1)
-    progress (3.3.1)
-    rack (1.5.2)
-    rack-protection (1.5.2)
-      rack
-    rake (10.1.0)
-    rdf (1.1.2.1)
+    concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
+    daemons (1.4.1)
+    eventmachine (1.2.7)
+    htmlentities (4.3.4)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
+    link_header (0.0.8)
+    multi_json (1.15.0)
+    net-http-persistent (4.0.2)
+      connection_pool (~> 2.2)
+    progress (3.6.0)
+    rack (2.2.8)
+    rake (13.0.6)
+    rdf (3.2.11)
+      link_header (~> 0.0, >= 0.0.8)
     ref (1.0.5)
-    rod (0.7.4.1)
+    rod (0.7.4.3)
       RubyInline (>= 3.10.0, < 4.0.0)
       activemodel (~> 3.2, >= 3.2.2)
       bsearch (>= 1.5.0, < 1.6.0)
-      english (>= 0.5.0, < 0.6.0)
       ref (>= 1.0.5, < 2.0.0)
-    rod-rest (0.5.1)
-      faraday
-      rod
-      sinatra
-    sinatra (1.4.4)
-      rack (~> 1.4)
-      rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+      strings-inflection (>= 0.1.0, < 0.2.0)
     slop (3.4.7)
-    sparql-client (0.0.11)
-      json_pure (>= 1.4.2)
-      net-http-persistent (~> 1.4.1)
-      rdf (>= 0.3.4)
-    thin (1.6.2)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.0.0)
-    tilt (1.4.1)
+    sparql-client (3.2.2)
+      net-http-persistent (~> 4.0, >= 4.0.2)
+      rdf (~> 3.2, >= 3.2.11)
+    strings-inflection (0.1.0)
+    thin (1.8.2)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bigdecimal (= 1.3.5)
   colors
   cyclopedio-wiki!
   htmlentities
   progress
   rake
-  rod (~> 0.7.4.1)
-  rod-rest
+  rod (~> 0.7.4.3)
   slop (~> 3.4.7)
   sparql-client
   thin

@@ -17,11 +17,6 @@ if lang.nil?
 end
 
 
-desc "Download dumps"
-task :download do
-  puts `./utils/download.rb -w #{wikipedia_path} -l #{lang}`
-end
-
 namespace :load do
   desc "Load pages"
   task :pages do

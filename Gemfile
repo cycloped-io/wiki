@@ -10,6 +10,7 @@ gem 'colors'
 gem 'thin'
 gem 'rake'
 gem 'sparql-client'
+gem 'bigdecimal', '1.3.5'
 
-gem 'rod', "~> 0.7.4.1"
-gem 'rod-rest'
+gem 'rod', "~> 0.7.4.3"
+#gem 'rod-rest'
