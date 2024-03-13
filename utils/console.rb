@@ -10,7 +10,7 @@ require 'progress'
 include Cyclopedio::Wiki
 
 at_exit do
-  Database.instance.open_database(ARGV[0])
+  Database.instance.open_database(ENV['WIKI_DB'])
   if ENV['WIKI_PATH']
     Page.path = ENV['WIKI_PATH' + '/pages-articles.xml']
   end

@@ -1,4 +1,4 @@
-task :default => [:"load:pages", :"load:languages", :"load:redirects", :"load:categories", :"load:offsets"]
+task :default => [:"load:pages", :"load:languages", :"load:redirects", :"load:categories", :"load:offsets", "load:anchors", "load:links", "load:occurrences"]
 
 wikipedia_path = ENV['WIKI_DATA']
 db = ENV['WIKI_DB']
@@ -52,7 +52,7 @@ namespace :load do
   task :links do
     puts "Loading links"
     puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r in `
-    puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r out `
+    #puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r out `
   end
 
   desc 'Load head nouns'
@@ -73,6 +73,18 @@ namespace :load do
   desc 'Load infoboxes'
   task :infoboxes do
     puts `./utils/load/infoboxes.rb -d #{db} -i #{wikipedia_path}/infoboxes.csv`
+  end
+
+  desc "Load anchors"
+  task :anchors do
+    puts "Loading anchors"
+    puts `./utils/load/anchors.rb -w #{wikipedia_path} -d #{db}`
+  end
+
+  desc "Load occurrences"
+  task :occurrences do
+    puts "Loading occurrences"
+    puts `./utils/load/occurrences.rb -w #{wikipedia_path} -d #{db}`
   end
 end
 
