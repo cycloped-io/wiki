@@ -15,6 +15,21 @@ module Cyclopedio
       has_one :anchor
 
       attr_accessor :measure
+
+      # The frequency of using the +anchor+ to relate to the
+      # +concept+ against other anchors relating to this concept.
+      def frequency
+        return @frequency if @frequency
+        @frequency = self.count.to_f / self.article.occurrences.
+          inject(0){|s,o| s + (o && o.count || 0)}
+      end
+
+      # The frequency of using the +anchor+ to relate to the
+      # +concept+ against other concepts.
+      def inverted_frequency
+        return @inverted_frequency if @inverted_frequency
+        @inverted_frequency = self.count.to_f / self.anchor.linked_count
+      end
     end
   end
 end
