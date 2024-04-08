@@ -24,7 +24,7 @@ module Cyclopedio
 
       def link_probability
         return @link_probability if defined?(@link_probability)
-        @link_probability = self.linked_count.to_f/(self.unlinked_count)
+        @link_probability = self.linked_count.to_f/([self.unlinked_count, self.linked_count].max)
       end
     end
   end
