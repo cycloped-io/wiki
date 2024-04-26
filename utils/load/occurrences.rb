@@ -72,5 +72,5 @@ missing_pages.close
 
 puts "Occurrences #{occurrence_count}/#{total}"
 Database.instance.open_database(db_path)
-puts Article.find_by_name("Gierałtowice").occurrences.to_a[..10].map{|a| "- #{a}" }.join("\n")
+Article.find_by_rod_id(1).occurrences.to_a[..10].map{|a| "- #{a.anchor.value} #{a.count}" }.join("\n")
 Database.instance.close_database

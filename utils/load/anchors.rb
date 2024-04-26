@@ -81,5 +81,5 @@ Database.instance.close_database
 missing_pages.close
 puts "Anchors #{anchor_count}/#{total}"
 Database.instance.open_database(db_path)
-puts Anchor.find_by_value("Gierałtowice").occurrences.to_a[..10].map{|a| "- #{a}" }.join("\n")
+puts Anchor.find_by_rod_id(1).occurrences.to_a[..10].map{|a| "- #{a.anchor.value} #{a.article.name} #{a.count}" }.join("\n")
 Database.instance.close_database
