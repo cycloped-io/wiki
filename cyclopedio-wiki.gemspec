@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Aleksander Smywinski-Pohl","Krzysztof Wrobel"]
   s.email       = ["apohllo@o2.pl"]
   s.homepage    = "http://cycloped.io"
-  s.summary     = %q{Database for string Wikipedia}
+  s.summary     = %q{Database for storing Wikipedia data with very fast access}
   s.description = %q{Ruby Object Database with data extracted from Wikipedia, allowing for fast and easy access}
 
   s.rubyforge_project = "cyclopedio-wiki"
