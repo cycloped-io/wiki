@@ -50,8 +50,9 @@ namespace :load do
 
   desc "Load page links"
   task :links do
-    puts "Loading links"
+    puts "Loading links in"
     puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r in `
+    #puts "Loading links out"
     #puts `./utils/load/links.rb -w #{wikipedia_path} -d #{db} -r out `
   end
 
